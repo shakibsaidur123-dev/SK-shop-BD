@@ -4,26 +4,89 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SK shop.BD</title>
 <style>
-body{font-family:Arial;margin:0;background:#fff7fb}
-header{background:#7b174d;color:#fff;padding:15px;text-align:center;font-size:22px;font-weight:bold}
-.products{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
-.card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px #0001;text-align:center;padding-bottom:10px}
-.card img{width:100%;height:160px;object-fit:cover}
-.card h3{font-size:14px;margin:8px 5px}
-.price{color:#7b174d;font-weight:bold}
-.btn{background:#7b174d;color:#fff;border:0;padding:8px 15px;border-radius:20px;margin-top:5px}
+body{margin:0;font-family:Arial;background:#fffdf0}
+header{background:#111;display:flex;align-items:center;padding:10px 15px;color:#fff}
+header img{width:55px;height:55px;border-radius:50%;border:2px solid #ffcc00}
+header h1{font-size:18px;margin-left:12px;line-height:1.2}
+header h1 span{color:#ffcc00}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
+.card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px #0002}
+.card img{width:100%;height:190px;object-fit:cover}
+.card.info{padding:8px;text-align:center}
+.price{color:#b1005a;font-weight:bold;margin:4px 0}
+.btn{background:#111;color:#ffcc00;border:0;width:90%;padding:9px;border-radius:20px;font-weight:bold;margin-bottom:8px}
+#adminPanel{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;z-index:999;overflow:auto;padding:15px;box-sizing:border-box}
+input,textarea{width:100%;padding:12px;margin:6px 0;border:1px solid #ccc;border-radius:8px;box-sizing:border-box}
+.adminBtn{background:#ffcc00;color:#111;padding:12px;border:0;width:100%;border-radius:8px;font-weight:bold;font-size:16px}
 </style>
 </head>
 <body>
-<header>SK shop.BD</header>
-<div id="box" class="products"></div>
-<p id="empty" style="text-align:center;padding:40px;color:#999">এখনো কোনো পণ্য নেই, admin থেকে যোগ করুন</p>
+<header>
+<img src="logo.jpg" id="logoBtn" title="5 বার ক্লিক করলে এডমিন খুলবে">
+<h1>SK <span>shop.BD</span><br><small style="font-size:11px;font-weight:normal">আপনার বিশ্বাস, আমাদের অঙ্গীকার</small></h1>
+</header>
+
+<div id="productGrid" class="grid"></div>
+<p id="empty" style="text-align:center;padding:50px;color:#999">এখনো কোনো পণ্য নেই<br>লোগোতে 5 বার ক্লিক করে পণ্য যোগ করুন</p>
+
+<div id="adminPanel">
+<h2>SK Admin - পণ্য যোগ করুন (কোড ছাড়া)</h2>
+<input type="file" id="pImg" accept="image/*">
+<input id="pName" placeholder="পণ্যের নাম">
+<input id="pPrice" placeholder="দাম, যেমন 550" type="number">
+<textarea id="pDesc" placeholder="বিবরণ (ঐচ্ছিক)"></textarea>
+<button class="adminBtn" onclick="addProduct()">✅ পণ্য যোগ করুন</button>
+<button style="background:#eee;margin-top:8px" class="adminBtn" onclick="closeAdmin()">❌ বন্ধ করুন</button>
+<hr>
+<div id="adminList"></div>
+</div>
+
 <script>
-let data=JSON.parse(localStorage.getItem('p')||'[]');
-let box=document.getElementById('box');
-let emp=document.getElementById('empty');
-if(data.length>0){emp.style.display='none';
-box.innerHTML=data.map(x=>`<div class=card><img src="${x.img}"><h3>${x.name}</h3><div class=price>৳${x.price}</div><button class=btn onclick="location.href='https://wa.me/8801XXXXXXXXX?text='+encodeURIComponent('আমি ${x.name} অর্ডার করতে চাই') ">অর্ডার</button></div>`).join('')}
+const WHATSAPP = "8801855840824";
+let clickCount=0;
+document.getElementById('logoBtn').onclick=()=>{
+ clickCount++; if(clickCount>=5){openAdmin(); clickCount=0}
+ setTimeout(()=>clickCount=0,2000);
+}
+function getProducts(){return JSON.parse(localStorage.getItem('sk_products')||'[]')}
+function saveProducts(a){localStorage.setItem('sk_products',JSON.stringify(a))}
+
+function addProduct(){
+ const file = document.getElementById('pImg').files[0];
+ const name = document.getElementById('pName').value;
+ const price = document.getElementById('pPrice').value;
+ if(!file ||!name ||!price){alert('ছবি, নাম, দাম অবশ্যই দিতে হবে'); return;}
+ const reader = new FileReader();
+ reader.onload = function(e){
+   let products = getProducts();
+   products.push({img:e.target.result,name:name,price:price,desc:document.getElementById('pDesc').value});
+   saveProducts(products);
+   document.getElementById('pImg').value=''; document.getElementById('pName').value=''; document.getElementById('pPrice').value=''; document.getElementById('pDesc').value='';
+   alert('পণ্য যোগ হয়েছে!'); render();
+ }
+ reader.readAsDataURL(file);
+}
+
+function render(){
+ let products = getProducts();
+ let grid = document.getElementById('productGrid');
+ let empty = document.getElementById('empty');
+ let adminList = document.getElementById('adminList');
+ if(products.length==0){empty.style.display='block'; grid.innerHTML=''; adminList.innerHTML=''; return;}
+ empty.style.display='none';
+ grid.innerHTML = products.map((p,i)=>`
+  <div class="card">
+   <img src="${p.img}">
+   <div class="info"><h3 style="font-size:14px;margin:5px 0">${p.name}</h3><div class="price">৳${p.price}</div>
+   <button class="btn" onclick="order('${p.name}','${p.price}')">অর্ডার করুন</button></div>
+  </div>`).join('');
+ adminList.innerHTML = products.map((p,i)=>`<div style="border:1px solid #ddd;padding:8px;margin:6px 0;border-radius:8px;display:flex;align-items:center;justify-content:space-between"><div><img src="${p.img}" style="width:50px;height:50px;object-fit:cover;border-radius:6px"> ${p.name} - ৳${p.price}</div><button onclick="del(${i})" style="background:red;color:#fff;border:0;padding:6px 10px;border-radius:6px">ডিলিট</button></div>`).join('');
+}
+function del(i){if(confirm('ডিলিট করবে?')){let a=getProducts(); a.splice(i,1); saveProducts(a); render();}}
+function order(name,price){let msg=`হ্যালো SK shop.BD, আমি ${name} (দাম ৳${price}) অর্ডার করতে চাই।`; window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`,'_blank')}
+function openAdmin(){document.getElementById('adminPanel').style.display='block'; render()}
+function closeAdmin(){document.getElementById('adminPanel').style.display='none'}
+render();
 </script>
 </body>
 </html>
