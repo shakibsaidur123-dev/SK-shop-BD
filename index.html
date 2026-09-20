@@ -3,351 +3,219 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>SK shop.BD - Online Shopping</title>
+<title>SK shop.BD</title>
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
-  font-family:Arial,"Noto Sans Bengali",sans-serif;
-  background:#fff7fb;
-  color:#333;
+font-family:Arial,"Noto Sans Bengali",sans-serif;
+background:#fff7fb;
+color:#333;
 }
 
 header{
-  background:#7b174d;
-  color:white;
-  padding:14px 5%;
-  position:sticky;
-  top:0;
-  z-index:1000;
-  box-shadow:0 3px 12px rgba(0,0,0,.15);
-}
-
-.top{
-  max-width:1200px;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  gap:15px;
-  flex-wrap:wrap;
+background:#7b174d;
+color:white;
+padding:15px;
+text-align:center;
 }
 
 .logo{
-  font-size:25px;
-  font-weight:bold;
-  color:#ffb6d9;
-  white-space:nowrap;
+font-size:28px;
+font-weight:bold;
 }
 
-.search{
-  flex:1;
-  display:flex;
-  min-width:220px;
-}
-
-.search input{
-  width:100%;
-  padding:12px;
-  border:none;
-  outline:none;
-  border-radius:7px 0 0 7px;
-  font-size:15px;
-}
-
-.search button{
-  border:none;
-  background:#ff4f9a;
-  color:white;
-  padding:0 18px;
-  border-radius:0 7px 7px 0;
-  cursor:pointer;
-}
-
-.cart-btn{
-  background:#ff4f9a;
-  border:none;
-  color:white;
-  padding:11px 16px;
-  border-radius:7px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.hero{
-  max-width:1200px;
-  margin:20px auto;
-  padding:45px 25px;
-  border-radius:15px;
-  background:linear-gradient(135deg,#7b174d,#c72d78,#ff4f9a);
-  color:white;
-  text-align:center;
-}
-
-.hero h1{
-  font-size:38px;
-  margin-bottom:12px;
-}
-
-.hero p{
-  font-size:18px;
-  margin-bottom:20px;
-}
-
-.hero button{
-  border:none;
-  padding:13px 25px;
-  background:white;
-  color:#9b1e5e;
-  border-radius:25px;
-  font-weight:bold;
-  cursor:pointer;
+header p{
+margin-top:5px;
+font-size:14px;
 }
 
 .container{
-  max-width:1200px;
-  margin:25px auto;
-  padding:0 15px;
+max-width:1100px;
+margin:auto;
+padding:15px;
 }
 
-.section-title{
-  color:#7b174d;
-  margin-bottom:15px;
-  font-size:25px;
+.search{
+display:flex;
+gap:8px;
+margin-bottom:15px;
 }
 
-.tools{
-  display:flex;
-  gap:10px;
-  margin-bottom:20px;
-  flex-wrap:wrap;
+.search input{
+flex:1;
+padding:12px;
+border:1px solid #ddd;
+border-radius:8px;
+font-size:16px;
 }
 
-.tools select{
-  padding:10px;
-  border:1px solid #ddd;
-  border-radius:7px;
-  background:white;
+button{
+border:0;
+border-radius:8px;
+padding:10px 15px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.search button,
+.add-btn{
+background:#ff4f9a;
+color:white;
 }
 
 .products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:18px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
 }
 
-.card{
-  background:white;
-  border-radius:12px;
-  overflow:hidden;
-  box-shadow:0 3px 12px rgba(0,0,0,.09);
-  transition:.2s;
+.product{
+background:white;
+border-radius:12px;
+padding:12px;
+box-shadow:0 2px 10px #00000012;
 }
 
-.card:hover{
-  transform:translateY(-4px);
+.product img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:10px;
+background:#eee;
 }
 
-.product-img{
-  height:170px;
-  background:#ffe5f0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:75px;
-}
-
-.card-body{
-  padding:14px;
-}
-
-.card h3{
-  color:#5d123a;
-  margin-bottom:8px;
+.product h3{
+margin:10px 0 5px;
+font-size:17px;
 }
 
 .price{
-  color:#e52d79;
-  font-size:20px;
-  font-weight:bold;
+color:#e91e63;
+font-size:20px;
+font-weight:bold;
 }
 
 .old{
-  color:#999;
-  text-decoration:line-through;
-  margin-left:6px;
-  font-size:14px;
+color:#999;
+text-decoration:line-through;
+font-size:14px;
+margin-left:5px;
 }
 
-.buy{
-  width:100%;
-  margin-top:12px;
-  padding:10px;
-  border:none;
-  background:#7b174d;
-  color:white;
-  border-radius:7px;
-  cursor:pointer;
-}
-
-.info{
-  margin-top:30px;
-  background:white;
-  padding:25px;
-  border-radius:12px;
-  box-shadow:0 3px 10px rgba(0,0,0,.07);
-}
-
-.info h2{
-  color:#7b174d;
-  margin-bottom:10px;
-}
-
-.qr{
-  text-align:center;
-}
-
-.qr img{
-  width:180px;
-  max-width:100%;
-  margin:15px;
-}
-
-footer{
-  margin-top:35px;
-  padding:30px 15px;
-  background:#4f0e32;
-  color:white;
-  text-align:center;
-}
-
-.whatsapp{
-  display:inline-block;
-  margin-top:12px;
-  background:#25D366;
-  color:white;
-  padding:12px 20px;
-  border-radius:25px;
-  text-decoration:none;
-  font-weight:bold;
-}
-
-/* CART */
-.cart-panel{
-  position:fixed;
-  right:-400px;
-  top:0;
-  width:360px;
-  max-width:90%;
-  height:100%;
-  background:white;
-  z-index:2000;
-  box-shadow:-5px 0 20px rgba(0,0,0,.2);
-  padding:20px;
-  transition:.3s;
-  overflow:auto;
-}
-
-.cart-panel.active{
-  right:0;
-}
-
-.cart-panel h2{
-  color:#7b174d;
-  margin-bottom:15px;
-}
-
-.close{
-  float:right;
-  border:none;
-  background:#eee;
-  padding:7px 11px;
-  border-radius:5px;
+.cart{
+margin-top:25px;
+background:white;
+padding:18px;
+border-radius:12px;
+box-shadow:0 2px 10px #00000012;
 }
 
 .cart-item{
-  padding:12px 0;
-  border-bottom:1px solid #eee;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid #eee;
+padding:10px 0;
+gap:10px;
 }
 
-.cart-total{
-  margin-top:20px;
-  font-size:20px;
-  font-weight:bold;
-  color:#7b174d;
+.total{
+font-size:20px;
+font-weight:bold;
+margin:15px 0;
 }
 
-.order{
-  display:block;
-  width:100%;
-  margin-top:15px;
-  padding:13px;
-  background:#25D366;
-  color:white;
-  text-align:center;
-  border:none;
-  border-radius:7px;
-  font-weight:bold;
-  text-decoration:none;
+.checkout{
+background:#25d366;
+color:white;
+width:100%;
+font-size:17px;
 }
 
-.empty{
-  text-align:center;
-  color:#888;
-  padding:30px 0;
+.admin{
+margin-top:25px;
+background:#fff;
+padding:20px;
+border-radius:12px;
+box-shadow:0 2px 10px #00000012;
 }
 
-@media(max-width:600px){
+.admin h2{
+color:#7b174d;
+margin-bottom:15px;
+}
 
-  header{
-    padding:12px;
-  }
+.admin input,
+.admin textarea{
+width:100%;
+padding:11px;
+margin:6px 0;
+border:1px solid #ddd;
+border-radius:7px;
+}
 
-  .logo{
-    width:100%;
-    text-align:center;
-  }
+.admin textarea{
+height:80px;
+resize:vertical;
+}
 
-  .hero{
-    margin:12px;
-    padding:35px 15px;
-  }
+.admin-products{
+margin-top:20px;
+}
 
-  .hero h1{
-    font-size:28px;
-  }
+.admin-product{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+padding:10px 0;
+border-bottom:1px solid #eee;
+}
 
-  .products{
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-  }
+.delete{
+background:#e53935;
+color:white;
+}
 
-  .product-img{
-    height:130px;
-    font-size:55px;
-  }
+.edit{
+background:#ff9800;
+color:white;
+}
 
-  .card-body{
-    padding:10px;
-  }
+.login{
+background:#f7e8f0;
+padding:15px;
+border-radius:10px;
+margin-bottom:15px;
+}
 
-  .card h3{
-    font-size:15px;
-  }
+.hidden{
+display:none;
+}
 
-  .price{
-    font-size:17px;
-  }
+.qr{
+text-align:center;
+margin:25px 0;
+}
 
-  .cart-panel{
-    width:100%;
-    max-width:100%;
-  }
+footer{
+margin-top:30px;
+background:#7b174d;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+@media(max-width:500px){
+.products{
+grid-template-columns:repeat(2,1fr);
+}
+
+.product img{
+height:140px;
+}
 }
 </style>
 </head>
@@ -355,427 +223,448 @@ footer{
 <body>
 
 <header>
-  <div class="top">
-
-    <div class="logo">SK shop.BD</div>
-
-    <div class="search">
-      <input
-        type="text"
-        id="search"
-        placeholder="পণ্য খুঁজুন..."
-        oninput="searchProducts()"
-      >
-      <button onclick="searchProducts()">🔍</button>
-    </div>
-
-    <button class="cart-btn" onclick="openCart()">
-      🛒 Cart (<span id="cartCount">0</span>)
-    </button>
-
-  </div>
+<div class="logo">SK shop.BD</div>
+<p>আপনার পছন্দের পণ্য এখন এক জায়গায়</p>
 </header>
-
-
-<section class="hero">
-
-  <h1>স্বাগতম SK shop.BD-তে</h1>
-
-  <p>
-    আপনার পছন্দের ফ্যাশন পণ্য এখন সহজেই অর্ডার করুন
-  </p>
-
-  <button onclick="document.getElementById('products').scrollIntoView()">
-    এখনই Shopping করুন
-  </button>
-
-</section>
-
 
 <div class="container">
 
-  <h2 class="section-title">🛍️ আমাদের পণ্য</h2>
-
-  <div class="tools">
-
-    <select id="sort" onchange="sortProducts()">
-      <option value="default">সাজান</option>
-      <option value="low">কম দাম → বেশি</option>
-      <option value="high">বেশি দাম → কম</option>
-    </select>
-
-  </div>
-
-  <div id="products" class="products"></div>
-
-
-  <div class="info">
-
-    <h2>📞 অর্ডার করতে</h2>
-
-    <p>
-      পণ্য Cart-এ যোগ করুন এবং WhatsApp-এর মাধ্যমে অর্ডার পাঠান।
-    </p>
-
-    <p style="margin-top:8px;">
-      WhatsApp: <b>01855840824</b>
-    </p>
-
-    <a
-      class="whatsapp"
-      href="https://wa.me/8801855840824"
-      target="_blank"
-    >
-      💬 WhatsApp এ যোগাযোগ করুন
-    </a>
-
-  </div>
-
-
-  <div class="info qr">
-
-    <h2>📱 SK shop.BD QR Code</h2>
-
-    <p>
-      আমাদের WhatsApp-এ দ্রুত যোগাযোগ করতে QR Code Scan করুন।
-    </p>
-
-    <img
-      src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://wa.me/8801855840824"
-      alt="SK shop.BD QR Code"
-    >
-
-  </div>
-
+<div class="search">
+<input id="search" placeholder="পণ্য খুঁজুন..." oninput="showProducts()">
+<button onclick="showProducts()">Search</button>
 </div>
 
+<h2>🛍️ আমাদের পণ্য</h2>
+<br>
+
+<div id="products" class="products"></div>
+
+<div class="cart">
+<h2>🛒 Shopping Cart</h2>
+<div id="cart"></div>
+<div class="total">মোট: ৳<span id="total">0</span></div>
+
+<button class="checkout" onclick="checkout()">
+WhatsApp-এ অর্ডার করুন
+</button>
+</div>
+
+<div class="admin">
+
+<h2>🔐 Admin Panel</h2>
+
+<div id="loginBox" class="login">
+<input id="adminPassword" type="password" placeholder="Admin Password">
+<button class="add-btn" onclick="login()">Login</button>
+</div>
+
+<div id="adminPanel" class="hidden">
+
+<h3>➕ নতুন পণ্য যোগ করুন</h3>
+
+<input id="productName" placeholder="পণ্যের নাম">
+
+<input id="productPrice" type="number" placeholder="বর্তমান দাম">
+
+<input id="productOldPrice" type="number" placeholder="পুরোনো দাম">
+
+<input id="productImage" placeholder="ছবির URL">
+
+<textarea id="productDescription" placeholder="পণ্যের বিবরণ"></textarea>
+
+<button class="add-btn" onclick="saveProduct()">
+পণ্য যোগ করুন
+</button>
+
+<div class="admin-products">
+<h3>📦 পণ্য পরিচালনা</h3>
+<div id="adminProducts"></div>
+</div>
+
+</div>
+</div>
+
+<div class="qr">
+<h2>📱 আমাদের ওয়েবসাইট</h2>
+<p>QR Code স্ক্যান করে ওয়েবসাইটে প্রবেশ করুন</p>
+<div id="qrcode"></div>
+</div>
+
+</div>
 
 <footer>
-
-  <h2>SK shop.BD</h2>
-
-  <p style="margin-top:8px;">
-    আপনার বিশ্বস্ত অনলাইন শপ
-  </p>
-
-  <p style="margin-top:10px;">
-    © 2026 SK shop.BD — All Rights Reserved
-  </p>
-
+© 2026 SK shop.BD
 </footer>
 
-
-<!-- CART PANEL -->
-
-<div id="cartPanel" class="cart-panel">
-
-  <button class="close" onclick="closeCart()">✕</button>
-
-  <h2>🛒 আপনার Cart</h2>
-
-  <div id="cartItems"></div>
-
-  <div class="cart-total">
-    মোট: ৳<span id="cartTotal">0</span>
-  </div>
-
-  <a
-    id="orderBtn"
-    class="order"
-    href="#"
-    target="_blank"
-  >
-    💬 WhatsApp-এ অর্ডার করুন
-  </a>
-
-</div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <script>
 
-const products = [
+const ADMIN_PASSWORD = "123456";
 
-  {
-    name:"প্রিমিয়াম শাড়ি",
-    price:1290,
-    old:1590,
-    icon:"👗"
-  },
+let products = JSON.parse(localStorage.getItem("sk_products")) || [
 
-  {
-    name:"ফ্যাশন ড্রেস",
-    price:990,
-    old:1250,
-    icon:"👚"
-  },
+{
+name:"প্রিমিয়াম শাড়ি",
+price:1290,
+old:1590,
+image:"",
+description:"সুন্দর প্রিমিয়াম শাড়ি"
+},
 
-  {
-    name:"লেডিস ব্যাগ",
-    price:790,
-    old:950,
-    icon:"👜"
-  },
+{
+name:"ফ্যাশন ড্রেস",
+price:990,
+old:1250,
+image:"",
+description:"আকর্ষণীয় ফ্যাশন ড্রেস"
+},
 
-  {
-    name:"ফ্যাশন জুতা",
-    price:1190,
-    old:1450,
-    icon:"👠"
-  },
+{
+name:"লেডিস ব্যাগ",
+price:790,
+old:950,
+image:"",
+description:"স্টাইলিশ লেডিস ব্যাগ"
+},
 
-  {
-    name:"জুয়েলারি সেট",
-    price:590,
-    old:750,
-    icon:"💎"
-  },
-
-  {
-    name:"সানগ্লাস",
-    price:490,
-    old:650,
-    icon:"🕶️"
-  },
-
-  {
-    name:"পারফিউম",
-    price:890,
-    old:1100,
-    icon:"🌸"
-  },
-
-  {
-    name:"হ্যান্ডব্যাগ",
-    price:850,
-    old:1050,
-    icon:"🛍️"
-  }
+{
+name:"ফ্যাশন জুতা",
+price:1190,
+old:1450,
+image:"",
+description:"ফ্যাশনেবল জুতা"
+}
 
 ];
 
-
 let cart = [];
+let editIndex = -1;
 
+function saveData(){
+localStorage.setItem("sk_products",JSON.stringify(products));
+}
 
-function renderProducts(list = products){
+function showProducts(){
 
-  const box = document.getElementById("products");
+let search=document.getElementById("search").value.toLowerCase();
 
-  box.innerHTML = "";
+let list=products.filter(p=>
+p.name.toLowerCase().includes(search)
+);
 
-  if(list.length === 0){
+let html="";
 
-    box.innerHTML =
-      '<div class="empty">কোনো পণ্য পাওয়া যায়নি 😔</div>';
+list.forEach((p,index)=>{
 
-    return;
-  }
+html+=`
 
+<div class="product">
 
-  list.forEach((p,index)=>{
+${p.image ?
+`<img src="${p.image}" alt="${p.name}">`
+:
+`<div style="height:180px;background:#f5d9e7;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:50px">🛍️</div>`
+}
 
-    box.innerHTML += `
+<h3>${p.name}</h3>
 
-      <div class="card">
+<div>
+<span class="price">৳${p.price}</span>
 
-        <div class="product-img">
-          ${p.icon}
-        </div>
+${p.old ?
+`<span class="old">৳${p.old}</span>`
+:""}
 
-        <div class="card-body">
+</div>
 
-          <h3>${p.name}</h3>
+<p style="margin:8px 0;color:#666">
+${p.description || ""}
+</p>
 
-          <div>
-            <span class="price">৳${p.price}</span>
-            <span class="old">৳${p.old}</span>
-          </div>
+<button class="add-btn" onclick="addCart(${index})">
+কার্টে যোগ করুন
+</button>
 
-          <button
-            class="buy"
-            onclick="addToCart(${index})"
-          >
-            🛒 Cart-এ যোগ করুন
-          </button>
+</div>
 
-        </div>
+`;
 
-      </div>
+});
 
-    `;
-
-  });
+document.getElementById("products").innerHTML=html;
 
 }
 
+function addCart(index){
 
-function addToCart(index){
+cart.push(products[index]);
 
-  cart.push(products[index]);
+showCart();
 
-  updateCart();
-
-  alert(products[index].name + " Cart-এ যোগ হয়েছে ✅");
-
-}
-
-
-function updateCart(){
-
-  document.getElementById("cartCount").innerText = cart.length;
-
-  const box = document.getElementById("cartItems");
-
-  if(cart.length === 0){
-
-    box.innerHTML =
-      '<div class="empty">আপনার Cart খালি</div>';
-
-    document.getElementById("cartTotal").innerText = "0";
-
-    return;
-  }
-
-
-  let total = 0;
-
-  box.innerHTML = "";
-
-
-  cart.forEach((p,index)=>{
-
-    total += p.price;
-
-    box.innerHTML += `
-
-      <div class="cart-item">
-
-        <b>${p.name}</b>
-
-        <div>
-          ৳${p.price}
-
-          <button
-            onclick="removeFromCart(${index})"
-            style="float:right;border:none;background:#ffe1ec;padding:5px;border-radius:4px;"
-          >
-            ❌
-          </button>
-
-        </div>
-
-      </div>
-
-    `;
-
-  });
-
-
-  document.getElementById("cartTotal").innerText = total;
-
-
-  let message =
-    "আসসালামু আলাইকুম, SK shop.BD থেকে আমি অর্ডার করতে চাই:%0A%0A";
-
-
-  cart.forEach((p,i)=>{
-
-    message +=
-      (i+1) + ". " +
-      p.name +
-      " - ৳" +
-      p.price +
-      "%0A";
-
-  });
-
-
-  message +=
-    "%0Aমোট: ৳" +
-    total;
-
-
-  document.getElementById("orderBtn").href =
-    "https://wa.me/8801855840824?text=" + message;
+alert("পণ্য কার্টে যোগ হয়েছে");
 
 }
 
+function showCart(){
 
-function removeFromCart(index){
+let html="";
+let total=0;
 
-  cart.splice(index,1);
+cart.forEach((p,index)=>{
 
-  updateCart();
+total+=Number(p.price);
 
-}
+html+=`
 
+<div class="cart-item">
 
-function openCart(){
+<div>
+<b>${p.name}</b>
+<br>
+৳${p.price}
+</div>
 
-  document
-    .getElementById("cartPanel")
-    .classList.add("active");
+<button class="delete" onclick="removeCart(${index})">
+X
+</button>
 
-}
+</div>
 
+`;
 
-function closeCart(){
+});
 
-  document
-    .getElementById("cartPanel")
-    .classList.remove("active");
+document.getElementById("cart").innerHTML=html;
 
-}
-
-
-function searchProducts(){
-
-  const text =
-    document
-      .getElementById("search")
-      .value
-      .toLowerCase();
-
-  const result =
-    products.filter(p =>
-      p.name.toLowerCase().includes(text)
-    );
-
-  renderProducts(result);
+document.getElementById("total").innerText=total;
 
 }
 
+function removeCart(index){
 
-function sortProducts(){
+cart.splice(index,1);
 
-  const type =
-    document.getElementById("sort").value;
-
-  let list = [...products];
-
-
-  if(type === "low"){
-
-    list.sort((a,b)=>a.price-b.price);
-
-  }
-
-
-  if(type === "high"){
-
-    list.sort((a,b)=>b.price-a.price);
-
-  }
-
-
-  renderProducts(list);
+showCart();
 
 }
 
+function checkout(){
 
-renderProducts();
+if(cart.length===0){
 
-updateCart();
+alert("কার্ট খালি");
+
+return;
+
+}
+
+let name=prompt("আপনার নাম লিখুন:");
+
+if(!name)return;
+
+let phone=prompt("আপনার মোবাইল নম্বর লিখুন:");
+
+if(!phone)return;
+
+let address=prompt("আপনার সম্পূর্ণ ঠিকানা লিখুন:");
+
+if(!address)return;
+
+let message="🛍️ SK shop.BD নতুন অর্ডার%0A%0A";
+
+cart.forEach((p,i)=>{
+
+message+=(i+1)+". "+p.name+" - ৳"+p.price+"%0A";
+
+});
+
+message+="%0Aমোট: ৳"+document.getElementById("total").innerText;
+
+message+="%0A%0A👤 নাম: "+name;
+
+message+="%0A📞 ফোন: "+phone;
+
+message+="%0A📍 ঠিকানা: "+address;
+
+window.open(
+"https://wa.me/8801855840824?text="+message,
+"_blank"
+);
+
+}
+
+function login(){
+
+let pass=document.getElementById("adminPassword").value;
+
+if(pass===ADMIN_PASSWORD){
+
+document.getElementById("loginBox").classList.add("hidden");
+
+document.getElementById("adminPanel").classList.remove("hidden");
+
+showAdminProducts();
+
+}else{
+
+alert("ভুল Password");
+
+}
+
+}
+
+function saveProduct(){
+
+let name=document.getElementById("productName").value;
+
+let price=document.getElementById("productPrice").value;
+
+let old=document.getElementById("productOldPrice").value;
+
+let image=document.getElementById("productImage").value;
+
+let description=document.getElementById("productDescription").value;
+
+if(!name || !price){
+
+alert("পণ্যের নাম এবং দাম দিন");
+
+return;
+
+}
+
+let product={
+name:name,
+price:Number(price),
+old:Number(old),
+image:image,
+description:description
+};
+
+if(editIndex===-1){
+
+products.push(product);
+
+}else{
+
+products[editIndex]=product;
+
+editIndex=-1;
+
+}
+
+saveData();
+
+clearForm();
+
+showProducts();
+
+showAdminProducts();
+
+alert("পণ্য সফলভাবে সংরক্ষণ হয়েছে");
+
+}
+
+function clearForm(){
+
+document.getElementById("productName").value="";
+document.getElementById("productPrice").value="";
+document.getElementById("productOldPrice").value="";
+document.getElementById("productImage").value="";
+document.getElementById("productDescription").value="";
+
+}
+
+function showAdminProducts(){
+
+let html="";
+
+products.forEach((p,index)=>{
+
+html+=`
+
+<div class="admin-product">
+
+<div>
+<b>${p.name}</b>
+<br>
+৳${p.price}
+</div>
+
+<div>
+
+<button class="edit" onclick="editProduct(${index})">
+Edit
+</button>
+
+<button class="delete" onclick="deleteProduct(${index})">
+Delete
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("adminProducts").innerHTML=html;
+
+}
+
+function editProduct(index){
+
+let p=products[index];
+
+document.getElementById("productName").value=p.name;
+
+document.getElementById("productPrice").value=p.price;
+
+document.getElementById("productOldPrice").value=p.old;
+
+document.getElementById("productImage").value=p.image;
+
+document.getElementById("productDescription").value=p.description;
+
+editIndex=index;
+
+window.scrollTo({
+top:document.querySelector(".admin").offsetTop,
+behavior:"smooth"
+});
+
+}
+
+function deleteProduct(index){
+
+if(confirm("এই পণ্যটি Delete করতে চান?")){
+
+products.splice(index,1);
+
+saveData();
+
+showProducts();
+
+showAdminProducts();
+
+}
+
+}
+
+showProducts();
+
+showCart();
+
+new QRCode(
+document.getElementById("qrcode"),
+{
+text:window.location.href,
+width:180,
+height:180
+}
+);
 
 </script>
 
